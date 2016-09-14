@@ -1,7 +1,7 @@
 # Assignment 1 (Clustering)
 
 This module is designed for clustering a given dataset stored as roadNet-CA.txt in Data folder. The file uploaded here is 
-just an part of the original data. The actual data can be found here https://snap.stanford.edu/data/roadNet-CA.html.
+just an part of the original data. The actual data can be found [here] (https://snap.stanford.edu/data/roadNet-CA.html).
 
 ## Technologies Used
 - R    : Used for preprocessing and visualizing data
