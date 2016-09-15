@@ -133,6 +133,8 @@ private:
         }
 
         for(int i = 0; i < k; i++){
+            if(count[i] == 0)
+                count[i] = 1;
             meanxaxis[i] = meanxaxis[i] / (float) count[i];
             meanyaxis[i] = meanyaxis[i] / (float) count[i];
         }
