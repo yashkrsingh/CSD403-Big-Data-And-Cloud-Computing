@@ -14,6 +14,7 @@
 ##-------------------------------------------------------------------
 
 library(ggplot2)
+library(plyr)
 input <- read.table(file = "~/Assignment 1 (Clustering)/Data/kmeans_input.txt")
 input[,3] <- head(read.table(file = "~/Assignment 1 (Clustering)/Data/kmeans_output.txt", colClasses = 'factor'), n = nrow(input))
 colnames(input) <- c('xCoordinates', 'yCoordinates', 'Clusters')
@@ -21,6 +22,10 @@ size <- read.table(file = "~/Assignment 1 (Clustering)/Data/data_size.txt", head
 
 k <- levels(input$Clusters)
 k <- k[length(k)]
+legName <- tabulate(input$Clusters)
+legName <- paste(1:length(legName), legName, sep = " : ")
+input$Clusters <- mapvalues(input$Clusters, from = levels(input$Clusters), to = legName)
+
 path <- paste("~/Assignment 1 (Clustering)/Results/result_k", k, "size", size, ".png", sep = "")
 png(filename = path, width = 580, height = 580, units = "px", bg = "white")
 g <- ggplot(data = input, aes(xCoordinates,yCoordinates, col = Clusters))
@@ -32,6 +37,6 @@ usage <- sort(sapply(ls(), function(x){object.size(get(x))}))
 usageMb <- sum(usage) / (1024*1024)
 usage <- paste("Total Memory Usage in Visualization: ", round(usageMb, 3), " Mb", sep = "")
 print(usage, quote = FALSE)
-rm(k, path, g, size, usage, usageMb)
+rm(k, path, g, size, usage, usageMb, legName)
 
 ##-------------------------------------------------------------------
