@@ -17,6 +17,7 @@ for (( k = 2; k < 7; k++ )); do
 	size=55000
 	iter=5
 	for (( i = 0; i < 3; i++ )); do
+		start=$(date + %s)
 		echo $size > ~/Assignment 1(Clustering)/Data/data_size.txt
 		echo 'Preprocessing Data'
 		Rscript Preprocessing.R
@@ -25,7 +26,10 @@ for (( k = 2; k < 7; k++ )); do
 		echo 'Running Clustering.cpp'
 		./a.out $k $iter
 		echo 'Visualizing Clusters'
-		Rscript Visualization.R > /dev/null
+		Rscript Visualization.R | grep "Total Memory"
+		end=$(date + %s)
+		runtime=$((end - start))
+		echo "Runtime : $runtime sec"
 		$size=((size*10))
 	done
 done

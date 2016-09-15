@@ -1,20 +1,21 @@
 /*
-*-------------------------------------------------------------------
-* Clustering Program (Clustering.cpp)
-* -----------------------------------
-* This program performs the main clustering task using kMeans
-* algorithm as given by Lloyd. Initial points are chosen based on the
-* theory of polar coordinates by giving random angle values to choose
-* points from throughout the space.
-*
-* Input :  Number of clusters (int), Number of iterations for
-*          kMeans (int)
-* Output:  kmeans_input.txt created in Results folder
-*
-* Program Structure:
-*
-* Class        : KMeansClustering
-* Data Members : vector<int> x (private)
+  -------------------------------------------------------------------
+  Clustering Program (Clustering.cpp)
+  -----------------------------------
+  This program performs the main clustering task using kMeans
+  algorithm as given by Lloyd. Initial points are chosen based on the
+  theory of polar coordinates by giving random angle values to choose
+  points from throughout the space. The program additionally prints the
+  total memory used through the execution (only for Linux systems).
+
+  Input :  Number of clusters (int), Number of iterations for
+           kMeans (int)
+  Output:  kmeans_input.txt created in Results folder
+
+  Program Structure:
+
+  Class        : KMeansClustering
+  Data Members : vector<int> x (private)
                         Stores the x coordinates of data points
                  vector<int> y (private)
                         Stores the x coordinates of data points
@@ -22,24 +23,30 @@
                         Stores the clusters that data points belong to
                  vector<int> count (public)
                         Stores the number of points in each cluster
-* Constructors : KMeansClustering
+  Constructors : KMeansClustering (public)
                         Reads the data from the preprocessing output
                         file kmeans_input.txt and assigns it to the
                         data members x and y
-* Methods      : initialSelection
+  Methods      : initialSelection (private)
                         Makes the initial selection of mean points
-                 assignClusters
+                 assignClusters (private)
                         Assigns clusters to all the data points
-                 calculateMeans
+                 calculateMeans (private)
                         Calculates mean points for each of the
                         clusters
-                 showClusterCount
+                 showClusterCount (public)
                         Shows the number of data points in each
                         cluster
-                 kMeans
+                 kMeans (public)
                         Performs the kMeans clustering on a dataset
                         stored in x and y
-*-------------------------------------------------------------------
+
+  Class        : SystemInfo
+  Methods      : parseLine (private)
+                        Helper function for parsing text lines
+                 getMemoryUsed (public)
+                        Returns memory used by current process in Kb
+ -------------------------------------------------------------------
 */
 
 #include<iostream>
@@ -49,9 +56,40 @@
 #include<cmath>
 #include<stdlib.h>
 #include<time.h>
+#include<string.h>
 #define PI 3.141592653589793238462643383279502884L
 
 using namespace std;
+
+class SystemInfo{
+private:
+    int parseLine(char* line){
+        int i = strlen(line);
+        const char* p = line;
+        while (*p <'0' || *p > '9')
+            p++;
+        line[i-3] = '\0';
+        i = atoi(p);
+        return i;
+    }
+
+public:
+    int getMemoryUsed(){
+        FILE* file = fopen("/proc/self/status", "r");
+        int result = -1;
+        char line[128];
+
+        while (fgets(line, 128, file) != NULL){
+            if (strncmp(line, "VmRSS:", 6) == 0){
+                result = parseLine(line);
+                break;
+            }
+        }
+        fclose(file);
+        return result;
+    }
+
+};
 
 class KMeansClustering{
 private:
@@ -148,10 +186,11 @@ int main(int argc, char *argv[]){
     int iteration = atoi(argv[2]);
     ofstream file ("~/Assignment 1(Clustering)/Data/kmeans_output.txt");
     KMeansClustering data;
+    SystemInfo sys;
     data.kMeans(k, iteration);
     for(int i = 0; i < data.clusters.size(); i++){
         file << data.clusters[i] << endl;
     }
     file.close();
-
+    cout << "Total Memory Usage in Clustering: " << sys.getMemoryUsed() / 1024 << "Mb" << endl;
 }

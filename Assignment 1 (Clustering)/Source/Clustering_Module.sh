@@ -20,6 +20,7 @@ echo "Enter number of clusters :"
 read k
 echo "Enter number of iterations :"
 read iter
+start=$(date + %s)
 echo $size > ~/KMeans_c++/Data/data_size.txt
 echo 'Preprocessing Data'
 Rscript Preprocessing.R
@@ -28,6 +29,9 @@ g++ -std=c++11 Clustering.cpp
 echo 'Running Clustering.cpp'
 ./a.out $k $iter
 echo 'Visualizing Clusters'
-Rscript Visualization.R > /dev/null
+Rscript Visualization.R | grep "Total Memory"
+end=$(date + %s)
+runtime=$((end - start))
+echo "Total Runtime : $runtime sec"
 
 ##-------------------------------------------------------------------
