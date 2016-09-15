@@ -8,6 +8,12 @@ just a part of the original data. The actual data can be found [here] (https://s
 - C++  : Used to program the kMeans clustering algorithm 
 - Bash : Used as a glue language to run programs and other commands
 
+## Requirements
+
+- Linux environment (any flavour)
+- g++ v4.9.3 or above (capable of running C++11)
+- R v3.1 or above with packages 'ggplot2' and 'plyr' installed
+
 ## Files Enclosed
 
 ### Data
@@ -67,3 +73,7 @@ the preprocessing script, clustering algorithm and the visualization script with
 starting from 55000 incrementing in multiples of 10 till 5500000 which is the maximum limit 
 for values of k ranging from 2 to 7 with fixed number of iterations. 
 
+## How To Execute
+
+- Copy the folders in the home folder
+- Open terminal and execute Clustering_Module.sh by command ./Clustering_Module.sh
