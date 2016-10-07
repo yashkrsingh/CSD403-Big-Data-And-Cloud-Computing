@@ -1,0 +1,21 @@
+
+{Bread} : 6
+{Butter} : 5
+{Beer} : 5
+{Coke} : 7
+{Eggs} : 5
+
+{Bread,Butter} : 2
+{Bread,Beer} : 3
+{Bread,Coke} : 4
+{Bread,Eggs} : 2
+{Butter,Beer} : 2
+{Butter,Coke} : 4
+{Butter,Eggs} : 3
+{Beer,Coke} : 3
+{Beer,Eggs} : 3
+{Coke,Eggs} : 2
+
+{Bread,Beer,Coke} : 2
+{Butter,Beer,Eggs} : 2
+{Butter,Coke,Eggs} : 2
