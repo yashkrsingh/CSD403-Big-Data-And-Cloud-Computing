@@ -14,9 +14,10 @@
 
 preprocessing <- function(data, size){
   temp<-data[!duplicated(data[,1]),]
-  temp<-temp[1:size, 1:2]
-  trans <- as.data.frame(c(size, length(unique(temp$StockCode))))
+  tempd<-data[!duplicated(data[,2]),]
+  trans <- as.data.frame(c(length(unique(temp$InvoiceNo)), length(unique(tempd$StockCode))))
   write.table(trans, file = "~/C++ Projects/Big Data and Cloud Computing Lab/Assignment 2 (Association Rule Mining)/Data/data_size.txt", sep = "\n" ,row.names = FALSE, col.names = FALSE)
+  temp<-data[1:size, 1:2]
   ctable<-ftable(temp)
   new <- as.data.frame(ctable)
   items <- new[,2]
@@ -28,7 +29,7 @@ preprocessing <- function(data, size){
   write.table(vec, file = "~/C++ Projects/Big Data and Cloud Computing Lab/Assignment 2 (Association Rule Mining)/Data/items.txt", sep = "\n" ,row.names = FALSE, col.names = FALSE)
   final<-as.table(as.matrix(ctable))
   write.table(final, file = "~/C++ Projects/Big Data and Cloud Computing Lab/Assignment 2 (Association Rule Mining)/Data/arm_input.csv", sep = "," ,row.names = FALSE, col.names = FALSE)
-  rm(temp,ctable,new,trans)
+  rm(temp,tempd,ctable,new,trans)
 }
 
 data <- read.csv(file = "~/C++ Projects/Big Data and Cloud Computing Lab/Assignment 2 (Association Rule Mining)/Data/OnlineRetail.csv", stringsAsFactors = FALSE, header = TRUE, colClasses = c(NA,NA,NA,"NULL","NULL","NULL","NULL","NULL"))

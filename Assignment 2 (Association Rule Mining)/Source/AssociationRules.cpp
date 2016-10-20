@@ -129,7 +129,7 @@ private:
     vector< map<vector<int>,int> > freqItems;
 
     void readCSV(){
-        ifstream file("~/C++ Projects/Big Data and Cloud Computing Lab/Assignment 2 (Association Rule Mining)/Data/arm_input.csv");
+        ifstream file("C:/Users/Yash Kumar Singh/Documents/C++ Projects/Big Data and Cloud Computing Lab/Assignment 2 (Association Rule Mining)/Data/arm_input.csv");
         for(auto i = 0; i < numTrans; i++){
             string line;
             getline(file, line);
@@ -205,7 +205,7 @@ private:
 public:
     AssociationRules(int sup, float conf){
         ifstream file;
-        file.open("~/C++ Projects/Big Data and Cloud Computing Lab/Assignment 2 (Association Rule Mining)/Data/data_size.txt");
+        file.open("C:/Users/Yash Kumar Singh/Documents/C++ Projects/Big Data and Cloud Computing Lab/Assignment 2 (Association Rule Mining)/Data/data_size.txt");
         while(!file.eof()){
             file >> numTrans >> numItems;
         }
@@ -216,7 +216,7 @@ public:
             transmat[i].resize(numItems);
 
         string name;
-        file.open("~/C++ Projects/Big Data and Cloud Computing Lab/Assignment 2 (Association Rule Mining)/Data/items.txt");
+        file.open("C:/Users/Yash Kumar Singh/Documents/C++ Projects/Big Data and Cloud Computing Lab/Assignment 2 (Association Rule Mining)/Data/items.txt");
         int i = 0;
         while(!file.eof()){
             file >> name;
@@ -286,7 +286,7 @@ public:
 
     void writeFrequentItemsets(){
         ofstream file;
-        file.open("~/C++ Projects/Big Data and Cloud Computing Lab/Assignment 2 (Association Rule Mining)/Results/arm_freqitems.txt");
+        file.open("C:/Users/Yash Kumar Singh/Documents/C++ Projects/Big Data and Cloud Computing Lab/Assignment 2 (Association Rule Mining)/Results/arm_freqitems.txt");
         for(auto x = 0; x < freqItems.size(); x++){
             file << endl;
             for(auto i = freqItems[x].begin(); i != freqItems[x].end(); i++){
@@ -306,6 +306,31 @@ public:
         file.close();
     }
 
+    void writeFrequentItemsetsTemp(){
+        int counter = 1;
+        ofstream file;
+        for(auto x = 0; x < freqItems.size(); x++, counter++){
+            string path = "C:/Users/Yash Kumar Singh/Documents/C++ Projects/Big Data and Cloud Computing Lab/Assignment 2 (Association Rule Mining)/Results/arm_freqitems";
+            path = path + (char)(counter + 48) + ".txt";
+            file.open(path);
+            file << endl;
+            for(auto i = freqItems[x].begin(); i != freqItems[x].end(); i++){
+                file << "{";
+                for(auto j = 0; j < (*i).first.size(); j++){
+                    auto k = actualitems.find((*i).first[j]);
+                    file << (*k).second;
+                    if(j == (*i).first.size()-1)
+                        file << "}";
+                    else
+                        file << ",";
+                }
+                file << ", ";
+                file << (*i).second << endl;
+            }
+        file.close();
+        }
+    }
+
     void generateKFrequentItemsets(){
         map<vector<int>,int> m;
         int k = 1;
@@ -317,11 +342,12 @@ public:
         }while(!m.empty());
         displayKFrequentItemsets();
         writeFrequentItemsets();
+        writeFrequentItemsetsTemp();
     }
 
     void generateAssociationRules(){
         ofstream file;
-        file.open("~/C++ Projects/Big Data and Cloud Computing Lab/Assignment 2 (Association Rule Mining)/Results/arm_arules.txt");
+        file.open("C:/Users/Yash Kumar Singh/Documents/C++ Projects/Big Data and Cloud Computing Lab/Assignment 2 (Association Rule Mining)/Results/arm_arules.txt");
         auto m = freqItems[freqItems.size() - 1];
         for(auto i = m.begin(); i != m.end(); i++){
             map< vector<int>,int > m;
@@ -371,22 +397,22 @@ public:
 
 };
 
-int main(int argc, char *argv[])){
-    if(argc == 1){
+int main(int argc, char *argv[]){
+    /*if(argc == 1){
         cout << "No command line arguments given!" << endl;
         exit(1);
     }
     int sup = atoi(argv[1]);
-    float conf = atof(argv[2]);
+    float conf = atof(argv[2]);*/
     int sup = 2;
     float conf = 50;
     AssociationRules arm(sup, conf);
-    SystemInfo sys;
+    //SystemInfo sys;
     cout << endl << "Frequent Itemsets: " << endl << endl;
     arm.generateKFrequentItemsets();
     cout << "Association Rules: " << endl << endl;
     arm.generateAssociationRules();
     cout << endl << endl;
-    cout << "Total Memory Usage For Association Rule Mining: " << sys.getMemoryUsed() / 1024 << "Mb" << endl;
+    //cout << "Total Memory Usage For Association Rule Mining: " << sys.getMemoryUsed() / 1024 << "Mb" << endl;
     return 0;
 }
