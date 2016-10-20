@@ -1,7 +1,7 @@
 # Assignment 2 (Association Rule Mining)
 
 This module is designed for finding association rules from a given dataset stored as OnlineRetail.csv 
-in Data folder. The actual data can be found [here] (https://archive.ics.uci.edu/ml/datasets/Online+Retail).
+in Data folder. The data used is a mocked up dataset created in form of a supermarket transactional database.
 
 ## Technologies Used
 - R    : Used for preprocessing and visualizing data
@@ -37,12 +37,11 @@ Stores the specified sample of a given size from the actual dataset created by P
 
 - **OnlineRetail.csv**
 
-Contains the dataset used for the assignment. The same can be found on the website:
-https://archive.ics.uci.edu/ml/datasets/Online+Retail
+Contains the dataset used for the assignment. 
 
 ### Results
 
-Stores the .txt files resulting AssociationRules.cpp.
+Stores the .txt files resulting from AssociationRules.cpp and .png files resulting from Visualization.R.
 
 ### Source
 
@@ -55,6 +54,11 @@ writes it back into an output file (arm_input.txt) which is used for association
 
 Performs the main mining task using Apriori algorithm and then uses a rule generation algorithm which chooses 
 valid association rules based on the minimum confidence threshold.
+
+- **Visualization.R**
+
+Creates a visualization in form of a bar plot showing the k-frequent itemsets for the given support count.
+
 
 - **run_arm.sh**
 

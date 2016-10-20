@@ -324,11 +324,15 @@ public:
                     else
                         file << ",";
                 }
-                file << ", ";
+                file << " ";
                 file << (*i).second << endl;
             }
         file.close();
         }
+        file.open("C:/Users/Yash Kumar Singh/Documents/C++ Projects/Big Data and Cloud Computing Lab/Assignment 2 (Association Rule Mining)/Results/numfiles.txt");
+        file << counter - 1 << endl;
+        file << supportcount << endl;
+        file.close();
     }
 
     void generateKFrequentItemsets(){
@@ -398,21 +402,19 @@ public:
 };
 
 int main(int argc, char *argv[]){
-    /*if(argc == 1){
+    if(argc == 1){
         cout << "No command line arguments given!" << endl;
         exit(1);
     }
     int sup = atoi(argv[1]);
-    float conf = atof(argv[2]);*/
-    int sup = 2;
-    float conf = 50;
+    float conf = atof(argv[2]);
     AssociationRules arm(sup, conf);
-    //SystemInfo sys;
+    SystemInfo sys;
     cout << endl << "Frequent Itemsets: " << endl << endl;
     arm.generateKFrequentItemsets();
     cout << "Association Rules: " << endl << endl;
     arm.generateAssociationRules();
     cout << endl << endl;
-    //cout << "Total Memory Usage For Association Rule Mining: " << sys.getMemoryUsed() / 1024 << "Mb" << endl;
+    cout << "Total Memory Usage For Association Rule Mining: " << sys.getMemoryUsed() / 1024 << "Mb" << endl;
     return 0;
 }
