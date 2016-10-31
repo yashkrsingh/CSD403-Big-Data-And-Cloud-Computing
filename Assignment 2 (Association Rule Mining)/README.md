@@ -66,8 +66,21 @@ Serves as the driver for the whole association rule mining module running the pr
 actual mining program. The program takes in the size, minimum support count value and minimum confidence threshold
 as parameters which are passed onto the respective programs accordingly.
 
+- **association-rule-mining.sh**
+
+Serves as an auxilary driver for the whole association rule mining module running the preprocessing script and the
+actual mining program. The program takes in the size, minimum support count value and minimum confidence threshold
+as parameters which are passed onto the respective programs accordingly.
+
 ## How To Execute
 
 - Copy the folders in the home folder
 - Open terminal and execute run_arm.sh by command ./run_arm.sh <size> <min_sup_count> <min_conf>
+
+OR
+
+- Copy the folders in the home folder
+- Place association-rule-mining.sh in usr/bin/ directory.
+- Open terminal and execute the whole project by command associaiton-rule-mining <args> <size> <min_sup_count> <min_conf>
+   (command by default displays the memory usage on screen whereas args can be replaced with --verbose which performs mining task without displaying anything on the terminal)
 
