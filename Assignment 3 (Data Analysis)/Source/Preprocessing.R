@@ -75,11 +75,11 @@ for(i in 1:5){
         c1 <- c1[-1]
         c2 <- c2[-1]
     }
-    data <- data.frame("Terms" = c3, "Current.Year" = c1, "Past.Year" = c2)
+    data <- data.frame("Terms" = c3, "FY2015" = c1, "FY2014" = c2)
     path <- paste("Data/", company[i], ".csv", sep = "")
     write.csv(data, file = path, row.names = FALSE)
 }
 
-rm(c1,c2,c3,list.of.packages,new.packages, i, path, company, page, data)
+rm(c1,c2,c3,list.of.packages,new.packages, i, path, company, page, data, a, b, c, d)
 
 ##-------------------------------------------------------------------
