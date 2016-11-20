@@ -1,7 +1,7 @@
 # Assignment 3 (Data Analysis)
 
 This module is designed for analysis of various financial statements in form of 10-K filings. The files are not 
-included in the submission. The data used can be found {here}[www.sec.gov]
+included in the submission. The data used can be found [here](www.sec.gov).
 
 ## Technologies Used
 
@@ -16,8 +16,6 @@ included in the submission. The data used can be found {here}[www.sec.gov]
 ## Files Enclosed
 
 ### Data
-
-- **.pdf Files**
 
 10-K filings for Apple, Facebook, Intel, Starbucks and Cognizant are used as the source of data.
 
