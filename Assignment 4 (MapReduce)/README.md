@@ -53,14 +53,8 @@ store it as output.txt in Results folder.
 This script produces visualizations about the results obtained from MapReduce.java in form of bar plots which are
 stored as results.png in the Results folder.
 
-- **run_mapred.sh**
-
-This script acts as the overall driver for the whole module as it collectively runs each and every program file accordingly
-and opens up the final visualization and results.
-
-
 ## How To Execute
 
 - Copy the folders in the home folder
-- Run run_mapred.sh
+- Execute Main.java and then Visualization.R
 
