@@ -1,7 +1,7 @@
 # Assignment 3 (Data Analysis)
 
-This module is designed for analysis of various financial statements in form of 10-K filings. The files are not 
-included in the submission. The data used can be found [here](www.sec.gov).
+This module is designed for analysis of various financial statements in form of 10-K filings. The data used 
+can be found [here](www.sec.gov).
 
 ## Technologies Used
 
