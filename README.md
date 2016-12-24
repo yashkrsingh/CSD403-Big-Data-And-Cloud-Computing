@@ -14,5 +14,13 @@ Implement the k-means clustering algorithm and run the program with different va
 
 Implement the association rule mining algorithm and run your program with different values of the input parameters (support and confidence) and with progressively larger datasets to get a better perspective on how the association rule mining algorithm works.
 
+- Balance Sheet Analysis
+
+Using the 10-K fillings of atleast 5 companies, draw out patterns and meaningful visualizations from the balance sheets so obtained. 
+
+- MapReduce
+
+Using the MapReduce programming paradigm in any language of your choice, count the frequency of words in a large text file.
+
 
 
